@@ -163,9 +163,9 @@ run().catch(console.dir)
 
 
 app.get('/', (req, res) => {
-    res.send('Hello!')
+    res.send('Hello world ware!')
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(port)
 })

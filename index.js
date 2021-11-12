@@ -167,5 +167,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log('runnin start on port', port)
+    console.log('running start on port', port)
 })

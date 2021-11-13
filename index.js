@@ -163,9 +163,9 @@ run().catch(console.dir)
 
 
 app.get('/', (req, res) => {
-    res.send('Hello world ware!')
+    res.send('Hell e world ware!')
 })
 
 app.listen(port, () => {
-    console.log('running start on port', port)
+    console.log('runni start on port', port)
 })

@@ -53,6 +53,13 @@ async function run() {
             const serv = await data.toArray();
             res.json(serv)
         })
+        app.get('/purchases/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await purchaseCollection.findOne(query);
+            console.log(result)
+            res.json(result)
+        })
 
 
         // ekta user er jonn find

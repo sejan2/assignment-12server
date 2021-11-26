@@ -2,6 +2,8 @@ const express = require('express')
 const cors = require('cors')
 const { MongoClient } = require('mongodb')
 const ObjectId = require('mongodb').ObjectId;
+// stripe
+const stripe = require('stripe')(process.env.STRIPE_SECRET)
 require('dotenv').config()
 const app = express()
 const port = process.env.PORT || 5000;
@@ -158,6 +160,18 @@ async function run() {
             const results = await serCollection.deleteOne(deleteQuery)
             console.log('deleted', results)
             res.json(results)
+        })
+        // for payment
+        app.post('create-payment-intent', async (req, res) => {
+            const paymentInfo = req.body;
+            const amount = paymentInfo.price * 100;
+            const paymentIntent = await stripe.paymentIntents.create({
+                currency: 'usd',
+                amount: amount,
+                payment_method_types: ['card']
+            });
+            res.json({ clientSecret: paymentIntent.client_secret })
+
         })
 
 
